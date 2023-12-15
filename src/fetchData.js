@@ -1,4 +1,6 @@
 const apiUrl = "https://proxy.cors.sh/http://135.181.226.131:8553/api/v1"
+// const apiUrl = "http://127.0.0.1:8553/api/v1"
+
 export const fetchData = async (url, method, data) => {
      return await fetch(`${apiUrl}${url}`, {
         method,

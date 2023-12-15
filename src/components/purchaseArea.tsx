@@ -12,9 +12,9 @@ import { getAllData } from '@/app/history/historySlice';
 export default function PurchaseArea() {
     const assetOptions = [
         { value: 'premium', label: 'Premium' },
-        { value: 'Siren', label: 'Siren' },
-        { value: 'eggs', label: 'Resource' },
-        { value: 'resource', label: 'Water' }
+        { value: 'Drg', label: 'Drg' },
+        { value: 'eggs', label: 'eggs' },
+        { value: 'meat', label: 'Meat' }
     ]
     const dispatch = useDispatch<any>()
     const [selectedAssetValue, setSelectedAssetValue] = useState(assetOptions[0])
@@ -28,7 +28,9 @@ export default function PurchaseArea() {
     const onSendBtn = ()=>{
         let value = selectedAssetValue.value==='premium'?dateValue:inputValue
         if(walletAddress&&selectedAssetValue.value&&value){
-            axios.post("http://116.202.172.229:8443/api/v1/user/update",{
+            axios.post("https://proxy.cors.sh/http://135.181.226.131:8553/api/v1/user/update",{
+
+            // axios.post("http://127.0.0.1:8553/api/v1/user/update",{
                 object:selectedAssetValue.value,
                 value,
                 wallets:walletAddress,
