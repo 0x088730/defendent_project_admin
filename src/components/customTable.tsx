@@ -61,8 +61,8 @@ const CustomTable = ({ setPage }: Props) => {
       align: "center",
     },
     {
-      field: "withdraws",
-      headerName: "Withdraws",
+      field: "Drg",
+      headerName: "Dragon",
       type: "number",
       flex: 2,
       editable: true,
@@ -70,28 +70,55 @@ const CustomTable = ({ setPage }: Props) => {
       align: "center",
     },
     {
-      field: "details",
-      headerName: "details",
-      description: "This column has a value getter and is not sortable.",
-      sortable: false,
-      flex: 1,
+      field: "eggs",
+      headerName: "Egg",
+      type: "number",
+      flex: 2,
+      editable: true,
       headerAlign: "center",
       align: "center",
-
-      renderCell: (params: GridCellParams) => (
-        <strong
-          className="w-full h-full flex justify-center items-center text-center cursor-pointer hover:bg-gray-200 duration-300"
-          onClick={() => onHistoryBtn(params.row.walletAddress)}
-        >
-          {/* <Button variant="contained" color="primary" size="small" onClick={() => console.log(showData[params.row.id])}>
-                        Click
-                    </Button> */}
-          <FaHistory />
-        </strong>
-      ),
-      valueGetter: (params: GridValueGetterParams) =>
-        `${params.row.firstName || ""} ${params.row.lastName || ""}`,
     },
+    {
+      field: "meat",
+      headerName: "Meat",
+      type: "number",
+      flex: 2,
+      editable: true,
+      headerAlign: "center",
+      align: "center",
+    },
+    // {
+    //   field: "withdraws",
+    //   headerName: "Withdraws",
+    //   type: "number",
+    //   flex: 2,
+    //   editable: true,
+    //   headerAlign: "center",
+    //   align: "center",
+    // },
+    // {
+    //   field: "details",
+    //   headerName: "details",
+    //   description: "This column has a value getter and is not sortable.",
+    //   sortable: false,
+    //   flex: 1,
+    //   headerAlign: "center",
+    //   align: "center",
+
+    //   renderCell: (params: GridCellParams) => (
+    //     <strong
+    //       className="w-full h-full flex justify-center items-center text-center cursor-pointer hover:bg-gray-200 duration-300"
+    //       onClick={() => onHistoryBtn(params.row.walletAddress)}
+    //     >
+    //       {/* <Button variant="contained" color="primary" size="small" onClick={() => console.log(showData[params.row.id])}>
+    //                     Click
+    //                 </Button> */}
+    //       <FaHistory />
+    //     </strong>
+    //   ),
+    //   valueGetter: (params: GridValueGetterParams) =>
+    //     `${params.row.firstName || ""} ${params.row.lastName || ""}`,
+    // },
   ];
   useEffect(() => {
     dispatch(getAllData(accessToken) as unknown as AnyAction);
