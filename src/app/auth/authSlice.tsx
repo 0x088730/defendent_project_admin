@@ -4,7 +4,7 @@ import axios from "axios";
 import { fetchData } from "../../fetchData"
 
 const api = axios.create({
-  baseURL: "https://65.21.85.17:8553/api/v1/",
+  baseURL: "https://proxy.cors.sh/http://135.181.226.131:8553/api/v1",
 });
 
 export const storage = {
@@ -36,7 +36,11 @@ export const setAccessTokenAsync = createAsyncThunk(
 
 export const login = async (walletAddress: string, dispatch: any, callback: any) => {
   try {
-    const res = await fetchData('/user/login', 'POST', { walletAddress })
+    const res = await fetchData('/user/admin/login', 'POST', { walletAddress })
+    if(res.data === false) {
+      alert('The Login Credintial is not exact');
+      return
+    }
     // let res = await api.post('user/login/',{walletAddress})
     if (res.accessToken) {
 
@@ -82,6 +86,7 @@ export const authSlice = createSlice({
 
   },
 });
+console.log()
 export const selectLoginState = (state: any) => state.auth.loginState;
 export const selectAccessToken = (state: any) => state.auth.accessToken;
 export const selectRefreshToken = (state: any) => state.auth.refreshToken;
