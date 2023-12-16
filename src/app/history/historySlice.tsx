@@ -18,13 +18,12 @@ export const getAllData = createAsyncThunk(
   "charecters/getAllData",
   async (token: string) => {
     if (token) {
-      let res = await fetchData('/user/history', 'POST', {token})
-      // let res = await axios.post(
-      //   "https://65.21.85.17:8553/api/v1/user/history/",
-      //   { token }
-      // );
-      console.log(res.data)
-      return res.data;
+      // let res = await fetchData('/user/history', 'POST', {token})
+      let res = await axios.post(
+        "https://api.dragontown.io/api/v1/user/history/",
+        { token }
+      );
+      return res.data.data;
     }
     return [];
   }
@@ -33,12 +32,12 @@ export const getDataByWallet = createAsyncThunk(
   "charecters/getDataByWallet",
   async ({ walletAddress, accessToken }: any) => {
     if (walletAddress.startsWith("0x")) {
-      let res = await fetchData('/user/history-by-wallet', 'POST', { walletAddress, accessToken })
-      // let res = await axios.post(
-      //   "https://65.21.85.17:8553/api/v1/user/history-by-wallet/",
-      //   { walletAddress, accessToken }
-      // );
-      return res.data;
+      // let res = await fetchData('/user/history-by-wallet', 'POST', { walletAddress, accessToken })
+      let res = await axios.post(
+        "https://api.dragontown.io/api/v1/user/history-by-wallet/",
+        { walletAddress, accessToken }
+      );
+      return res.data.data;
     }
     return []
   }

@@ -4,8 +4,8 @@ import axios from "axios";
 import { fetchData } from "../../fetchData"
 
 const api = axios.create({
-  // baseURL: "http://127.0.0.1:8553/api/v1",
-  baseURL: "https://proxy.cors.sh/http://135.181.226.131:8553/api/v1",
+  baseURL: "https://api.dragontown.io/api/v1",
+  // baseURL: "https://proxy.cors.sh/http://135.181.226.131:8553/api/v1",
 
 });
 
@@ -38,21 +38,22 @@ export const setAccessTokenAsync = createAsyncThunk(
 
 export const login = async (walletAddress: string, dispatch: any, callback: any) => {
   try {
-    const res = await fetchData('/user/admin/login', 'POST', { walletAddress })
-    if(res.data === false) {
+    const res = await api.post('/user/admin/login', { walletAddress })
+    if(res.data.data === false) {
       alert('The Login Credintial is not exact');
       return
     }
     // let res = await api.post('user/login/',{walletAddress})
-    if (res.accessToken) {
+    if (res.data.accessToken) {
 
-      dispatch(setAccessTokenAsync(res.accessToken))
+      dispatch(setAccessTokenAsync(res.data.accessToken))
       dispatch(setLoginStateAsync(true))
       callback()
     }
 
   } catch (error) {
     alert('The Login Credintial is not exact')
+    console.log("error", error)
   }
 }
 
