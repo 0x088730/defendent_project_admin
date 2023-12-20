@@ -7,7 +7,7 @@ export const withdrawData = createAsyncThunk(
   async (token: string) => {
     if (token) {
       let res = await axios.post(
-        "https://api.dragontown.io/api/v1/user/history/",
+        "https://api.dragontown.io/api/v1/user/withdrawHistory/",
         { token }
       );
       return res.data.data;
