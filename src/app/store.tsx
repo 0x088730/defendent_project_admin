@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import history from './history/historySlice'
+import getAllData from './history/historySlice'
+import getWithdraw from './history/withdrawData'
 import auth from './auth/authSlice'
 import {useDispatch} from "react-redux"
 export const store = configureStore({
     reducer: {
-        history: history,
+        userData: getAllData,
+        withdrawData: getWithdraw,
         auth: auth
     },
 });

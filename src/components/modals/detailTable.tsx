@@ -5,7 +5,6 @@ import { RootState } from "@/app/store";
 import { getDataByWallet } from "@/app/history/historySlice";
 import { AnyAction } from "@reduxjs/toolkit";
 import {useEffect} from 'react'
-import {FaHistory} from '@react-icons/all-files/fa/FaHistory'
 import { selectAccessToken } from "@/app/auth/authSlice";
 export interface DataType {
     id: number | null;
@@ -21,7 +20,7 @@ const DetailTable = ({walletAddress}: PropsType) => {
     const dispatch = useDispatch()
     const accessToken = useSelector(selectAccessToken)
     const showData: DataType[] = useSelector(
-        (state: RootState) => state.history.detail
+        (state: RootState) => state.userData.detail
     );
    
     const columns: GridColDef[] = [

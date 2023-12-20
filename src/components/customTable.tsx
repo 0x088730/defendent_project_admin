@@ -30,12 +30,8 @@ const CustomTable = ({ setPage }: Props) => {
   const [selectedWallet, setSelectedWallet] = useState("");
   const accessToken = useSelector(selectAccessToken)
   const showData: DataType[] = useSelector(
-    (state: RootState) => state.history.data
+    (state: RootState) => state.userData.data
   );
-  const onHistoryBtn = (walletAddress: string) => {
-    setSelectedWallet(walletAddress);
-    setOpen(true);
-  };
   const columns: GridColDef[] = [
     {
       field: "id",
@@ -79,6 +75,15 @@ const CustomTable = ({ setPage }: Props) => {
       align: "center",
     },
     {
+      field: "withdraws",
+      headerName: "Withdraw",
+      type: "number",
+      flex: 2,
+      editable: true,
+      headerAlign: "center",
+      align: "center",
+    },
+    {
       field: "meat",
       headerName: "Meat",
       type: "number",
@@ -87,43 +92,10 @@ const CustomTable = ({ setPage }: Props) => {
       headerAlign: "center",
       align: "center",
     },
-    // {
-    //   field: "withdraws",
-    //   headerName: "Withdraws",
-    //   type: "number",
-    //   flex: 2,
-    //   editable: true,
-    //   headerAlign: "center",
-    //   align: "center",
-    // },
-    // {
-    //   field: "details",
-    //   headerName: "details",
-    //   description: "This column has a value getter and is not sortable.",
-    //   sortable: false,
-    //   flex: 1,
-    //   headerAlign: "center",
-    //   align: "center",
-
-    //   renderCell: (params: GridCellParams) => (
-    //     <strong
-    //       className="w-full h-full flex justify-center items-center text-center cursor-pointer hover:bg-gray-200 duration-300"
-    //       onClick={() => onHistoryBtn(params.row.walletAddress)}
-    //     >
-    //       {/* <Button variant="contained" color="primary" size="small" onClick={() => console.log(showData[params.row.id])}>
-    //                     Click
-    //                 </Button> */}
-    //       <FaHistory />
-    //     </strong>
-    //   ),
-    //   valueGetter: (params: GridValueGetterParams) =>
-    //     `${params.row.firstName || ""} ${params.row.lastName || ""}`,
-    // },
   ];
   useEffect(() => {
     dispatch(getAllData(accessToken) as unknown as AnyAction);
   }, [accessToken]);
-  console.log("showdata", showData)
   return (
     <div className="pt-24">
       <Box
@@ -162,7 +134,6 @@ const CustomTable = ({ setPage }: Props) => {
         <div className="w-4/5 bg-white mx-auto rounded-3xl px-20 py-16 mt-24 shadow-2xl  ">
           <DetailTable walletAddress={selectedWallet} />
         </div>
-        {/* <div style={{backgroundColor:'white'}}>asdf</div> */}
       </Modal>
     </div>
   );

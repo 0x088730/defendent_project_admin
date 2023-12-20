@@ -1,19 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { DataType } from "@/global/types";
 import axios from "axios";
-import { fetchData } from "../../fetchData"
 
-const data: DataType[] = [
-  // { id: 1, name: 'Snow', category: 'Jon', age: 35 },
-  // { id: 2, name: 'Lannister', category: 'human', age: 42 },
-  // { id: 3, name: 'Lannister', category: 'country', age: 45 },
-  // { id: 4, name: 'Stark', category: 'human', age: 16 },
-  // { id: 5, name: 'Targaryen', category: 'animal', age: null },
-  // { id: 6, name: 'Melisandre', category: null, age: 150 },
-  // { id: 7, name: 'Clifford', category: 'animal', age: 44 },
-  // { id: 8, name: 'Frances', category: 'human', age: 36 },
-  // { id: 9, name: 'Roxie', category: 'country', age: 65 },
-];
 export const getAllData = createAsyncThunk(
   "charecters/getAllData",
   async (token: string) => {
@@ -37,6 +25,7 @@ export const getDataByWallet = createAsyncThunk(
         "https://api.dragontown.io/api/v1/user/history-by-wallet/",
         { walletAddress, accessToken }
       );
+      console.log("wallet", res.data)
       return res.data.data;
     }
     return []

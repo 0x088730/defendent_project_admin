@@ -4,8 +4,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import axios from 'axios'
-import dayjs from 'dayjs';
-import { text } from 'stream/consumers';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAccessToken } from '@/app/auth/authSlice';
 import { getAllData } from '@/app/history/historySlice';
@@ -28,9 +26,7 @@ export default function PurchaseArea() {
     const onSendBtn = ()=>{
         let value = selectedAssetValue.value==='premium'?dateValue:inputValue
         if(walletAddress&&selectedAssetValue.value&&value){
-            axios.post("https://proxy.cors.sh/http://135.181.226.131:8553/api/v1/user/update",{
-
-            // axios.post("http://127.0.0.1:8553/api/v1/user/update",{
+            axios.post("https://api.dragontown.io/api/v1/user/history/",{
                 object:selectedAssetValue.value,
                 value,
                 wallets:walletAddress,

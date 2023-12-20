@@ -1,12 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { DataType } from "@/global/types";
 import axios from "axios";
-import { fetchData } from "../../fetchData"
 
 const api = axios.create({
   baseURL: "https://api.dragontown.io/api/v1",
-  // baseURL: "https://proxy.cors.sh/http://135.181.226.131:8553/api/v1",
-
 });
 
 export const storage = {
